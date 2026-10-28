@@ -1,0 +1,4 @@
+gcc -std=gnu11 -O1 -g -fwrapv -fno-strict-aliasing -fsanitize=address,undefined \
+    -o c4host host/host_main.c $(ls app/src/main/cpp/*.c | grep -v platform_android) -lm -lpthread
+ASAN_OPTIONS=detect_leaks=0 ./c4host app/src/main/assets/doom1.wad     # кадры -> /tmp/c4doom/*.ppm
+STRESS_ONLY=1 ASAN_OPTIONS=detect_leaks=0 ./c4host app/src/main/assets/doom1.wad
